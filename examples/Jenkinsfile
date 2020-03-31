@@ -1,0 +1,27 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        withCredentials([string(credentialsId: 'appveyor-token', variable: 'APPVEYOR_TOKEN')]) {
+          appveyorBuild(
+            accountToken: APPVEYOR_TOKEN,
+            accountName: 'my-appveyor-username',
+            projectSlug: 'my-project-slug',
+            branch: env.GIT_BRANCH,
+            commitId: env.GIT_COMMIT,
+            buildNumber: env.BUILD_NUMBER
+          )
+
+          appveyorDownloadAll(
+            accountName: 'my-appveyor-username',
+            projectSlug: 'my-project-slub',
+            buildVersion: env.APPVEYOR_BUILD_VERSION,
+            targetDir: 'target/artifacts'
+          )
+        }
+      }
+    }
+  }
+}

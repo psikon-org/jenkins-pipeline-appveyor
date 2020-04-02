@@ -1,4 +1,4 @@
-# jenkins-pipeline-appveyor
+# psikon-jenkins-pipeline
 
 Provides build steps that let you use appveyor to build your project from Jenkins.
 
@@ -11,7 +11,7 @@ Secondly, you should setup a Jenkins [secret text credential](https://jenkins.io
 Finally, you can add the following to the top of your Jenkinsfile:
 
 ```
-@Library('jenkins-pipeline-appveyor@master') _
+@Library('psikon-jenkins-appveyor@master') _
 ```
 
 And use the necessary steps to start building with Appveyor.
